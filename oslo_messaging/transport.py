@@ -250,7 +250,7 @@ class TransportHost(object):
 
     def __ne__(self, other):
         return not self == other
-
+# 重构__repr__方法后，不管直接输出对象还是通过print打印的信息都按我们__repr__方法中定义的格式进行显示了
     def __repr__(self):
         attrs = []
         for a in ['hostname', 'port', 'username', 'password']:

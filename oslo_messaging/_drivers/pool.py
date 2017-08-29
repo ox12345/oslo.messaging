@@ -123,7 +123,7 @@ class Pool(object):
     def create(self):
         """Construct a new item."""
 
-
+# 连接池
 class ConnectionPool(Pool):
     """Class that implements a Pool of Connections."""
 
@@ -133,12 +133,12 @@ class ConnectionPool(Pool):
         self.url = url
         super(ConnectionPool, self).__init__(max_size, min_size, ttl,
                                              self._on_expire)
-
+    # 过期之后操作，关闭连接
     def _on_expire(self, connection):
         connection.close()
         LOG.debug("Idle connection has expired and been closed."
                   " Pool size: %d" % len(self._items))
-
+    # 创建一个连接
     def create(self, purpose=common.PURPOSE_SEND):
         LOG.debug('Pool creating new connection')
         return self.connection_cls(self.conf, self.url, purpose)
