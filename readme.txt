@@ -1,4 +1,4 @@
-运算符重载方法一览表：
+运算符重载方法一览表：(http://www.cnblogs.com/hotbaby/p/4913363.html)
 
 method	overload	call
 __init__	构造函数	对象创建: X = Class(args)
