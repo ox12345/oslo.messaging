@@ -113,6 +113,7 @@ class Transport(object):
     def _require_driver_features(self, requeue=False):
         self._driver.require_features(requeue=requeue)
 
+    # 默认为rpc cast消息，不用等待reply，超时时间为空，不用回复生产者消息
     def _send(self, target, ctxt, message, wait_for_reply=None, timeout=None,
               retry=None):
         if not target.topic:
@@ -122,6 +123,7 @@ class Transport(object):
                                  wait_for_reply=wait_for_reply,
                                  timeout=timeout, retry=retry)
 
+    # 为notification消息，与rpc消息有区别，调用具体driver的发送消息
     def _send_notification(self, target, ctxt, message, version, retry=None):
         if not target.topic:
             raise exceptions.InvalidTarget('A topic is required to send',
@@ -129,6 +131,7 @@ class Transport(object):
         self._driver.send_notification(target, ctxt, message, version,
                                        retry=retry)
 
+    # 监听rpc消息
     def _listen(self, target, batch_size, batch_timeout):
         if not (target.topic and target.server):
             raise exceptions.InvalidTarget('A server\'s target must have '
@@ -137,6 +140,7 @@ class Transport(object):
         return self._driver.listen(target, batch_size,
                                    batch_timeout)
 
+    # 监听notifications消息
     def _listen_for_notifications(self, targets_and_priorities, pool,
                                   batch_size, batch_timeout):
         for target, priority in targets_and_priorities:
