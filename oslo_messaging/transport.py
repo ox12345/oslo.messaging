@@ -59,7 +59,7 @@ _transport_opts = [
                     'transport_url option.'),
 ]
 
-
+# 设置默认transport配置项
 def set_transport_defaults(control_exchange):
     """Set defaults for messaging transport configuration options.
 
