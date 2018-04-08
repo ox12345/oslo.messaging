@@ -64,16 +64,17 @@ def init_random_generator():
     data = []
     file_dir = os.path.dirname(os.path.abspath(__file__))
     with open(os.path.join(file_dir, 'messages_length.yaml')) as m_file:
+        # 解析yaml文件
         content = yaml.safe_load(m_file)
         data += [int(n) for n in content[
             'test_data']['string_lengths'].split(', ')]
-
+    # TODO 学会使用collections
     ranges = collections.defaultdict(int)
     for msg_length in data:
         range_start = ((msg_length // DISTRIBUTION_BUCKET_SIZE) *
                        DISTRIBUTION_BUCKET_SIZE + 1)
         ranges[range_start] += 1
-
+    # 排序数据
     ranges_start = sorted(ranges.keys())
     total_count = len(data)
 
