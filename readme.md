@@ -35,6 +35,9 @@ X==Y，X!=Y
 - __delete__	描述符属性	X.attr, X.attr=value, del X.attr
 - __new__	创建	在__init__之前创建对象
 
+- stevedore使用方式
+>stevedore是用来实现动态加载代码的开源模块
+https://blog.csdn.net/gqtcgq/article/details/49620279
 ----
 demo usage
 - python rpc-server.py --config-file rpc.conf
