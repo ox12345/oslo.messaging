@@ -33,3 +33,8 @@ __enter__, __exit__	环境管理器	with obj as var:
 __get__, __set__,
 __delete__	描述符属性	X.attr, X.attr=value, del X.attr
 __new__	创建	在__init__之前创建对象
+
+----
+demo usage
+python rpc-server.py --config-file rpc.conf
+python rpc-client.py --config-file rpc.conf
